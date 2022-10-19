@@ -1,35 +1,32 @@
 class Start {
     public static void main(String[] args) {
-        Car c = new Car();
-        c.weight = 1572.0;
-        c.serial = "GHSK-523566";
-        System.out.println(c instanceof Car);    // true
-        System.out.println(c instanceof Vehicle);    // true
-        
-        int count = 0;
-        
-        Vehicle[] a = { new Car(), new Truck(), new Car(),
-                        new Car(), new Car(), new Truck(),
-                        new Car(), new Truck(), new Truck()
+        Taxable[] a = { new Book(), new Ebook(), new Book(),
+                        new Ebook(), new Ebook()
                        };
+        double total = 0.0;
         for (int i = 0; i < a.length; i++) {
-            if (a[i] instanceof Car) {
-                count++;
-            }
+            total += a[i].getTax();
         }
-        System.out.println("Count : " + count);
+        System.out.println(total);
     }
 }
 
-class Vehicle {
-    double weight;
-    String serial;
+interface Taxable {
+    // double getTax();
+    default double getTax() {
+        return 5.0;
+    }
 }
 
-class Car extends Vehicle {
-    
+class Book implements Taxable {
+    double price;
+    public double getTax() {
+        return price * 0.01;
+    }
 }
 
-class Truck extends Vehicle {
-    int wheels;
+class Ebook implements Taxable {
+    public double getTax() {
+        return 15.0;
+    }
 }
