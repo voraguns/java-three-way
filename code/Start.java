@@ -23,9 +23,7 @@ class PlayerComparator implements Comparator {
     public int compare(Object a, Object b) {
         Player p = (Player) a;
         Player q = (Player) b;
-        if (p.number < q.number) return -1;
-        if (p.number > q.number) return +1;
-        return 0;
+        return p.number - q.number;
     }
 }
 
