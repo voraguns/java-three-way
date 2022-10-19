@@ -12,20 +12,20 @@ class Start {
                        new Player("John", 2)
                      };
         
-        Arrays.sort(a, new PlayerComparator());
+        Arrays.sort(a, (p, q) -> p.number - q.number);
         for(int i = 0; i < a.length; i++) {
             System.out.println(" " + a[i].name + " " + a[i].number);
         }
     }
 }
 
-class PlayerComparator implements Comparator {
-    public int compare(Object a, Object b) {
-        Player p = (Player) a;
-        Player q = (Player) b;
-        return p.number - q.number;
-    }
-}
+//class PlayerComparator implements Comparator {
+//    public int compare(Object a, Object b) {
+//        Player p = (Player) a;
+//        Player q = (Player) b;
+//        return p.number - q.number;
+//    }
+//}
 
 class Player {
     int number;
