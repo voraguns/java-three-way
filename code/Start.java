@@ -1,32 +1,40 @@
+
+import java.util.Arrays;
+import java.util.Comparator;
+
 class Start {
     public static void main(String[] args) {
-        Taxable[] a = { new Book(), new Ebook(), new Book(),
-                        new Ebook(), new Ebook()
-                       };
-        double total = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            total += a[i].getTax();
+        
+        Player[] a = { new Player("David", 7),
+                       new Player("Michael", 10),
+                       new Player("Frank", 8),
+                       new Player("Stephen", 4),
+                       new Player("John", 2)
+                     };
+        
+        Arrays.sort(a, new PlayerComparator());
+        for(int i = 0; i < a.length; i++) {
+            System.out.println(" " + a[i].name + " " + a[i].number);
         }
-        System.out.println(total);
     }
 }
 
-interface Taxable {
-    // double getTax();
-    default double getTax() {
-        return 5.0;
+class PlayerComparator implements Comparator {
+    public int compare(Object a, Object b) {
+        Player p = (Player) a;
+        Player q = (Player) b;
+        return p.name.compareTo(q.name);
     }
 }
 
-class Book implements Taxable {
-    double price;
-    public double getTax() {
-        return price * 0.01;
-    }
-}
-
-class Ebook implements Taxable {
-    public double getTax() {
-        return 15.0;
+class Player {
+    int number;
+    String name;
+    
+    Player() { }
+    
+    Player(String name, int number) {
+        this.name = name;
+        this.number = number;
     }
 }
